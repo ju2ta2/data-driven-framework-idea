@@ -1,18 +1,21 @@
 package com.nostromo.listeners;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.testng.Reporter;
-import org.testng.SkipException;
+import com.nostromo.utilities.MonitoringMail;
+import com.nostromo.utilities.TestConfig;
+import jakarta.mail.MessagingException;
+import org.testng.*;
 
 import com.nostromo.base.TestBase;
 import com.nostromo.utilities.TestUtil;
 import com.relevantcodes.extentreports.LogStatus;
 
-public class CustomListeners extends TestBase implements ITestListener {
+public class CustomListeners extends TestBase implements ITestListener, ISuiteListener {
+
+	public String messageBody;
 
 	@Override
 	public void onTestStart(ITestResult result) {
@@ -40,7 +43,6 @@ public class CustomListeners extends TestBase implements ITestListener {
     		Thread.sleep(1000);
 			TestUtil.captureScreenshot();
 		} catch (IOException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	extentTest.log(LogStatus.FAIL, result.getName().toUpperCase() + " Failed with exception: " + result.getThrowable());
@@ -80,4 +82,25 @@ public class CustomListeners extends TestBase implements ITestListener {
 		
 	}
 
+	@Override
+	public void onStart(ISuite suite) {
+
+	}
+
+	@Override
+	public void onFinish(ISuite suite) {
+		// Creation email with link to jenkins report
+		MonitoringMail mail = new MonitoringMail();
+        try {
+            messageBody = "http://" + InetAddress.getLocalHost().getHostAddress() + ":8080/job/data-driven-framework-idea/HTML_20Report";
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(messageBody);
+        try {
+            mail.sendMail(TestConfig.server, TestConfig.from, TestConfig.to, TestConfig.subject, messageBody);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -52,6 +52,7 @@ public class TestBase {
 	public static WebDriverWait wait;
 	public ExtentReports extReport = ExtentManager.getInstance();
 	public static ExtentTest extentTest;
+	public static String browser;
 
 	@BeforeSuite
 	public void setUp() {
@@ -81,6 +82,13 @@ public class TestBase {
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
+
+			if(System.getenv("browser") != null && !System.getenv().isEmpty()) {
+				browser = System.getenv("browser");
+			} else {
+				browser = config.getProperty("browser");
+			}
+			config.setProperty("browser", browser);
 
 			if (config.getProperty("browser").equals("firefox")) {
 				if (config.getProperty("OS").equals("windows")) {
