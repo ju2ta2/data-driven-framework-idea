@@ -1,5 +1,6 @@
 target/
 test-output/
+src/test/java/com/nostromo/utilities/TestConfig.java
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -38,3 +39,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+src/test/resources/logs/Application.log
+src/test/resources/logs/Selenium.log

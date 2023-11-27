@@ -91,42 +91,42 @@ public class TestBase {
 			config.setProperty("browser", browser);
 
 			if (config.getProperty("browser").equals("firefox")) {
-				if (config.getProperty("OS").equals("windows")) {
-					System.setProperty("webdriver.gecko.driver", Paths
-							.get("src\\test\\resources\\executables\\geckodriver.exe").toAbsolutePath().toString());
-				} else if (config.getProperty("OS").equals("linux")) {
-					System.setProperty("webdriver.gecko.driver",
-							Paths.get("src/test/resources/executables/geckodriver").toAbsolutePath().toString());
-				} else if (config.getProperty("OS").equals("macOS")) {
-					System.setProperty("webdriver.gecko.driver",
-							Paths.get("src/test/resources/executables/geckodrivermac").toAbsolutePath().toString());
-				}
+//				if (config.getProperty("OS").equals("windows")) {
+//					System.setProperty("webdriver.gecko.driver", Paths
+//							.get("src/test/resources/executables/geckodriver.exe").toAbsolutePath().toString());
+//				} else if (config.getProperty("OS").equals("linux")) {
+//					System.setProperty("webdriver.gecko.driver",
+//							Paths.get("src/test/resources/executables/geckodriver").toAbsolutePath().toString());
+//				} else if (config.getProperty("OS").equals("macOS")) {
+//					System.setProperty("webdriver.gecko.driver",
+//							Paths.get("src/test/resources/executables/geckodrivermac").toAbsolutePath().toString());
+//				}
 				driver = new FirefoxDriver();
 				log.debug("Gecko driver launched!");
 			} else if (config.getProperty("browser").equals("chrome")) {
-				if (config.getProperty("OS").equals("windows")) {
-					System.setProperty("webdriver.chrome.driver", Paths
-							.get("src\\test\\resources\\executables\\chromedriver.exe").toAbsolutePath().toString());
-				} else if (config.getProperty("OS").equals("linux")) {
-					System.setProperty("webdriver.chrome.driver",
-							Paths.get("src/test/resources/executables/chromedriver").toAbsolutePath().toString());
-				} else if (config.getProperty("OS").equals("macOS")) {
-					System.setProperty("webdriver.chrome.driver",
-							Paths.get("src/test/resources/executables/chromedrivermac").toAbsolutePath().toString());
-				}
+//				if (config.getProperty("OS").equals("windows")) {
+//					System.setProperty("webdriver.chrome.driver", Paths
+//							.get("src/test/resources/executables/chromedriver.exe").toAbsolutePath().toString());
+//				} else if (config.getProperty("OS").equals("linux")) {
+//					System.setProperty("webdriver.chrome.driver",
+//							Paths.get("src/test/resources/executables/chromedriver").toAbsolutePath().toString());
+//				} else if (config.getProperty("OS").equals("macOS")) {
+//					System.setProperty("webdriver.chrome.driver",
+//							Paths.get("src/test/resources/executables/chromedrivermac").toAbsolutePath().toString());
+//				}
 				driver = new ChromeDriver();
 				log.debug("Chrome driver launched!");
 			} else if (config.getProperty("browser").equals("edge")) {
-				if (config.getProperty("OS").equals("windows")) {
-					System.setProperty("webdriver.edge.driver", Paths
-							.get("src\\test\\resources\\executables\\msedgedriver.exe").toAbsolutePath().toString());
-				} else if (config.getProperty("OS").equals("linux")) {
-					System.setProperty("webdriver.edge.driver",
-							Paths.get("src/test/resources/executables/msedgedriver").toAbsolutePath().toString());
-				} else if (config.getProperty("OS").equals("macOS")) {
-					System.setProperty("webdriver.edge.driver",
-							Paths.get("src/test/resources/executables/msedgedriversmac").toAbsolutePath().toString());
-				}
+//				if (config.getProperty("OS").equals("windows")) {
+//					System.setProperty("webdriver.edge.driver", Paths
+//							.get("src/test/resources/executables/msedgedriver.exe").toAbsolutePath().toString());
+//				} else if (config.getProperty("OS").equals("linux")) {
+//					System.setProperty("webdriver.edge.driver",
+//							Paths.get("src/test/resources/executables/msedgedriver").toAbsolutePath().toString());
+//				} else if (config.getProperty("OS").equals("macOS")) {
+//					System.setProperty("webdriver.edge.driver",
+//							Paths.get("src/test/resources/executables/msedgedriversmac").toAbsolutePath().toString());
+//				}
 				driver = new EdgeDriver();
 				log.debug("Edge driver launched!");
 			}
